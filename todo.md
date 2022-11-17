@@ -1,2 +1,3 @@
 - Définir des règles de base
 - Génération de la grille et affichage
+- Qu'est-ce qu'une ville optimisée ? bohneur, efficacité....
