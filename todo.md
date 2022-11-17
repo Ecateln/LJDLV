@@ -1,0 +1,2 @@
+- Définir des règles de base
+- Génération de la grille et affichage
