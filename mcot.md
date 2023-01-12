@@ -7,9 +7,9 @@ C'est pourquoi la génération d'une ville respectant certains critères, à l'a
 L'utilisation d'un automate cellulaire permet, avec une grande flexibilité, de construire un modèle de ville ainsi que d'en étudier l'évolution afin d'adapter les résultats obtenus par rapport aux attentes originelles.
 
 ## Positionnement thématique
-MATHÉMATIQUES (Probabilités)
-MATHÉMATIQUES (Autres domaines)
 INFORMATIQUE (Informatique pratique)
+MATHÉMATIQUES (Probabilités)
+MATHÉMATIQUES (Autres domaines: Automates Cellulaires)
 
 ## Mots-clés
 ### Français
