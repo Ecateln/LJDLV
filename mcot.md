@@ -4,9 +4,9 @@
 todo
 
 ## Positionnement thématique
-MATHÉMATIQUES (Automates cellulaires)
-INFORMATIQUE (Simulation informatique)
-INFORMATIQUE (Méthodes stochastiques)
+MATHÉMATIQUES (Probabilités)
+MATHÉMATIQUES (Autres domaines)
+INFORMATIQUE (Informatique pratique)
 
 ## Mots-clés
 ### Français
