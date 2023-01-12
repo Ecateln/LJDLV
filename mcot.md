@@ -13,7 +13,7 @@ INFORMATIQUE (Informatique pratique)
 Automate cellulaire
 
 ### Anglais
-Cellular Automato
+Cellular Automata
 potat
 
 ## Bibliographie commentée
