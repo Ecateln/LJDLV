@@ -22,6 +22,7 @@ potat
 ## Bibliographie commentée
 
 ## Problématique retenue
+Peut-on un jour espérer compter sur des algorithmes pour générer des organisations de villes entières ?
 
 ## Objectifs du TIPE
 
