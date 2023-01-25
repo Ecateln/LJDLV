@@ -29,7 +29,7 @@ Flexibility
 ## Bibliographie commentée
 
 ## Problématique retenue
-Peut-on un jour espérer compter sur des algorithmes pour générer des organisations de villes entières ?
+Peut-on espérer un jour pouvoir compter sur des algorithmes tels que des automates cellulaires afin de générer des organisations de villes entières ?
 
 ## Objectifs du TIPE
 1. Etudier le principe d'automate cellulaire
