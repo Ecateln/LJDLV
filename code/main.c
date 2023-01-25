@@ -3,8 +3,8 @@
 #include <stdlib.h>
 
 // Generator configuration
-#define HEIGHT 50
-#define LENGTH 50
+#define HEIGHT 30
+#define LENGTH 40
 
 #define NEIGHBOURS_DISTANCE 3
 #define CELL_TYPE_COUNT 5
