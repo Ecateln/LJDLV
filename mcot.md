@@ -14,9 +14,17 @@ MATHÉMATIQUES (Autres domaines: Automates Cellulaires)
 ## Mots-clés
 ### Français
 Automate cellulaire
+Modélisation
+évolution probabiliste
+Visualisation / Représentation graphique
+Flexibilité
 
 ### Anglais
 Cellular Automata
+Modeling
+Probabilistic evolving
+Visualization / Graphical interface
+Flexibility
 
 ## Bibliographie commentée
 
