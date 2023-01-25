@@ -17,21 +17,22 @@ Automate cellulaire
 
 ### Anglais
 Cellular Automata
-potat
 
 ## Bibliographie commentée
 
 ## Problématique retenue
+Peut-on un jour espérer compter sur des algorithmes pour générer des organisations de villes entières ?
 
 ## Objectifs du TIPE
-
 1. Etudier le principe d'automate cellulaire
 2. Modéliser l'évolution d'une ville à l'aide d'un automate cellulaire
 3. Définir des règles de génération et étudier les comportements de celles-ci
+
 ## Abstract
 (résumé en anglais)
 
 ## Références bibliographiques (phase 2)
 
 ## DOT
-TODO: Rencontrer Conway ?
+~~TODO: Rencontrer Conway ?~~
+- La conférence avec le matheux qui avait des fonds d'écran rigolos
