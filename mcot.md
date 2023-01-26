@@ -43,9 +43,11 @@ Peut-on espérer pouvoir un jour compter sur des algorithmes tels que des automa
 (résumé de la bio en anglais)
 
 ## Références bibliographiques (phase 2)
-- la vidéo avec conway
-- deux trois articles qui parlent de techniques du jdlv
-- documentation sur la ville et villes pref des gens / des politiques
+John Von Neumann: [Theory of self-reproducing automata](https://archive.org/details/theoryofselfrepr00vonn_0/page/n13/mode/2up)
+Ralph William Gosper: [Exploiting regularities in large cellular spaces](https://doi.org/10.1016/0167-2789(84)90251-3)
+Tim Tyler: [Cellular Automata FAQ](http://cafaq.com/)
+Huw Oliver: [The 53 best cities in the world in 2022](https://www.timeout.com/things-to-do/best-cities-in-the-world)
+Numberphile: [Does John Conway hate his Game of Life?](https://www.youtube.com/watch?v=E8kUJL04ELA)
 
 ## DOT
 ~~TODO: Rencontrer Conway ?~~
