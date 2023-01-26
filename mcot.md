@@ -20,7 +20,7 @@ Visualisation / Représentation graphique
 Flexibilité
 
 ### Anglais
-Cellular Automata
+Cellular Automaton
 Modeling
 Probabilistic evolving
 Visualization / Graphical interface
