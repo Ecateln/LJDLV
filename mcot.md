@@ -7,24 +7,24 @@ C'est pourquoi la génération d'une ville respectant certains critères donnés
 L'utilisation d'un automate cellulaire permet, avec une grande flexibilité, de construire un modèle de ville ainsi que de représenter et d'étudier son évolution afin d'adapter les résultats obtenus pour proposer de nouvelles règles et mieux répondre aux besoins des futurs habitants.
 
 ## Positionnement thématique
-INFORMATIQUE (Informatique pratique)
-INFORMATIQUE (Informatique théorique)
-MATHÉMATIQUES (Autres domaines: Automates Cellulaires)
+INFORMATIQUE (Informatique pratique)  
+INFORMATIQUE (Informatique théorique)  
+MATHÉMATIQUES (Autres domaines: Automates Cellulaires)  
 
 ## Mots-clés
 ### Français
-Automate cellulaire
-Modélisation
-Évolution Probabiliste
-Représentation Graphique
-Optimisation
+Automate cellulaire  
+Modélisation  
+Évolution Probabiliste  
+Représentation Graphique  
+Optimisation  
 
 ### Anglais
-Cellular Automaton
-Modeling
-Probabilistic Evolution
-Graphical Interface
-Optimization
+Cellular Automaton  
+Modeling  
+Probabilistic Evolution  
+Graphical Interface  
+Optimization  
 
 ## Bibliographie commentée
 - organisation de villes very important -> prendre en compte bcp de facteurs (faire liste), trop de situations dans lesquels bcp inconveniants, alors on va coder un truc qui évite tout ça
