@@ -27,7 +27,7 @@ Graphical Interface
 Optimization  
 
 ## Bibliographie commentée
-- organisation de villes very important -> prendre en compte bcp de facteurs (faire liste), trop de situations dans lesquels bcp inconveniants, alors on va coder un truc qui évite tout ça
+- organisation de villes very important -> prendre en compte bcp de facteurs (faire liste), trop de situations dans lesquels bcp inconvénients, alors on va coder un truc qui évite tout ça
 - importance du choix des règles (Conway il a mis 1an et demi (trouver vidéo (veritassium ?)))
 - expliquer que ici juste ébauche et non travail complet -> bcp plus de temps requis afin de faire un truc qui tient la route -> exemples de fonctionalités supplémentaires (grille infinie, optimisations avec mémoization des patterns...)
 
