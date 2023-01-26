@@ -35,9 +35,9 @@ Optimization
 Peut-on espérer pouvoir un jour compter sur des algorithmes tels que des automates cellulaires afin de générer des organisations de villes entières ?
 
 ## Objectifs du TIPE
-1. Etudier le principe d'automate cellulaire
-2. Modéliser l'évolution d'une ville à l'aide d'un automate cellulaire
-3. Définir des règles de génération et étudier les comportements de celles-ci
+1. Appliquer le principe d'automate cellulaire à une modélisation de zone urbaine
+2. Étudier les différents besoins d'une ville et de ses habitants
+3. Définir des règles de génération à partir de l'étude précédente et étudier les comportements de celles-ci
 
 ## Abstract
 (résumé de la bio en anglais)
