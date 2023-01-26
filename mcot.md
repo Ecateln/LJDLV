@@ -15,16 +15,16 @@ MATHÉMATIQUES (Autres domaines: Automates Cellulaires)
 ### Français
 Automate cellulaire
 Modélisation
-Évolution probabiliste
-Visualisation / Représentation graphique
-Flexibilité
+Évolution Probabiliste
+Représentation Graphique
+Optimisation
 
 ### Anglais
 Cellular Automaton
 Modeling
-Probabilistic evolving
-Visualization / Graphical interface
-Flexibility
+Probabilistic Evolution
+Graphical Interface
+Optimization
 
 ## Bibliographie commentée
 - organisation de villes very important -> prendre en compte bcp de facteurs (faire liste), trop de situations dans lesquels bcp inconveniants, alors on va coder un truc qui évite tout ça
