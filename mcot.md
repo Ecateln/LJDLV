@@ -15,7 +15,7 @@ MATHÉMATIQUES (Autres domaines: Automates Cellulaires)
 ### Français
 Automate cellulaire
 Modélisation
-évolution probabiliste
+Évolution probabiliste
 Visualisation / Représentation graphique
 Flexibilité
 
