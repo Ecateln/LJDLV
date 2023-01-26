@@ -8,7 +8,7 @@ L'utilisation d'un automate cellulaire permet, avec une grande flexibilité, de 
 
 ## Positionnement thématique
 INFORMATIQUE (Informatique pratique)
-MATHÉMATIQUES (Probabilités)
+INFORMATIQUE (Informatique théorique)
 MATHÉMATIQUES (Autres domaines: Automates Cellulaires)
 
 ## Mots-clés
