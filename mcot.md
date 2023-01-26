@@ -32,7 +32,7 @@ Flexibility
 - expliquer que ici juste ébauche et non travail complet -> bcp plus de temps requis afin de faire un truc qui tient la route -> exemples de fonctionalités supplémentaires (grille infinie, optimisations avec mémoization des patterns...)
 
 ## Problématique retenue
-Peut-on espérer un jour pouvoir compter sur des algorithmes tels que des automates cellulaires afin de générer des organisations de villes entières ?
+Peut-on espérer pouvoir un jour compter sur des algorithmes tels que des automates cellulaires afin de générer des organisations de villes entières ?
 
 ## Objectifs du TIPE
 1. Etudier le principe d'automate cellulaire
