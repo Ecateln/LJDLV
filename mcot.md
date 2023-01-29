@@ -27,6 +27,8 @@ Graphical Interface
 Optimization  
 
 ## Bibliographie commentée
+John von Neumann, un mathématicien et physicien américo-hongrois (1903-1957), qui travaillait dans les années 1940 sur les systèmes auto-réplicatifs ne parvennait pas à trouver de modèle satisfaisant afin de démontrer son idée de robot capable de construire un copie de lui même à partir de pièces détachées. Il s'inspira alors du travail d'un de ses collègues chercheur en crystallographie pour créer le premier automate cellulaire. Cette première version représentée par une grille en deux dimensions dont les cases peuvent prendre 29 états différents entraîna une longue succession d'études de la part de communautés de mathématiciens et de certains physiciens. [1] [6]
+
 - organisation de villes very important -> prendre en compte bcp de facteurs (faire liste), trop de situations dans lesquels bcp inconvénients, alors on va coder un truc qui évite tout ça
 - importance du choix des règles (Conway il a mis 1an et demi (trouver vidéo (veritassium ?)))
 - expliquer que ici juste ébauche et non travail complet -> bcp plus de temps requis afin de faire un truc qui tient la route -> exemples de fonctionalités supplémentaires (grille infinie, optimisations avec mémoization des patterns...)
@@ -52,6 +54,8 @@ Tim Tyler: [Cellular Automata FAQ](http://cafaq.com/)
 Huw Oliver: [The 53 best cities in the world in 2022](https://www.timeout.com/things-to-do/best-cities-in-the-world)
 
 Numberphile: [Inventing Game of Life](https://www.youtube.com/watch?v=R9Plq-D1gEk)
+
+Martin Gardner: [The fantastic combinations of John Conway's new solitaire game « life »](https://web.stanford.edu/class/sts145/Library/life.pdf)
 
 ## DOT
 ~~TODO: Rencontrer Conway ?~~
