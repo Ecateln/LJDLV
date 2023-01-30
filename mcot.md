@@ -2,10 +2,10 @@
 
 ## Présentation rapide
 
-L'optimisation des structures urbaines et de leur organisation est un enjeu primordial au bien être des citoyens.
-C'est pourquoi la génération d'une ville respectant certains critères donnés, à l'aide d'un outil informatique, peut s'avérer des plus utiles dans le contexte sociétal actuel.
+L'optimisation des structures urbaines et de leur organisation est un enjeu primordial au bien-être des citoyens.
+C'est pourquoi la modélisation d'une telle organisation qui respecterait un ensemble de critères donnés, à l'aide d'un outil informatique, peut s'avérer des plus utiles dans le contexte sociétal actuel.
 
-L'utilisation d'un automate cellulaire permet, avec une grande flexibilité, de construire un modèle de ville ainsi que de représenter et d'étudier son évolution afin d'adapter les résultats obtenus pour proposer de nouvelles règles et mieux répondre aux besoins des futurs habitants.
+L'utilisation d'un automate cellulaire semble permettre, avec une grande flexibilité, de construire un modèle de ville ainsi que de représenter et d'étudier son évolution. Cette étude permettrait d'adapter les résultats obtenus pour proposer de nouvelles règles pour l'automate et ainsi mieux répondre aux besoins des futurs habitants.
 
 ## Positionnement thématique
 
