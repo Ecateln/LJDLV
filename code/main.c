@@ -2,23 +2,21 @@
 #include <stdlib.h>
 #include <time.h>
 
-// Generator configuration
+/// Generator configuration
 #define HEIGHT 30
 #define LENGTH 40
 
-#define NEIGHBOURS_DISTANCE 3
+#define NEIGHBOURS_DISTANCE 2
 #define CELL_TYPE_COUNT 5
 #define PRINT_INTERVAL 250 // in ms
 
-#define CELLS_COUNT (HEIGHT * LENGTH) // patouche
+// Do not edit:
+#define CELLS_COUNT (HEIGHT * LENGTH)
 
-/*
- * TODO:
- * - Decide of the rules
- * - Pondérage de la distance
- */
+/// Functions
+int min(int a, int b) { return a > b ? b : a; }
+int max(int a, int b) { return a > b ? a : b; }
 
-// The name is self-explanatory imo
 void clearStdout() {
 #ifdef _WIN32
   system("cls");
@@ -73,24 +71,6 @@ void editCell(int *grid, int i, int value) {
     grid[i] = value;
 }
 
-/*
-int distance(int a, int b) {
-  return abs((b % LENGTH) - (a % LENGTH)) + abs((b / LENGTH) - (a / LENGTH));
-}
-
-int *findSurroundings(int *grid, int k) {
-  int *res = malloc(sizeof(int) * CELL_TYPE_COUNT);
-  for (int i = CELL_TYPE_COUNT; i--; res[i] = 0);
-
-  for (int i = 0; i < HEIGHT * LENGTH; i++) {
-    if (distance(i, k) <= NEIGHBOURS_DISTANCE && i != k)
-      res[grid[i]]++;
-  }
-
-  return res;
-}
-*/
-
 int *findSurroundings(int *grid, int k) {
   int *res = malloc(sizeof(int) * CELL_TYPE_COUNT);
   for (int i = CELL_TYPE_COUNT; i--; res[i] = 0);
@@ -98,12 +78,12 @@ int *findSurroundings(int *grid, int k) {
   int kx = k % LENGTH,
       ky = k / LENGTH;
 
-  for (int i = max(0, kx - NEIGHBOURS_DISTANCE); i <= min(LENGTH, kx + NEIGHBOURS_DISTANCE); i++)
+  for (int i = max(0, ky - NEIGHBOURS_DISTANCE); i <= min(HEIGHT - 1, ky + NEIGHBOURS_DISTANCE); i++)
   {
-    for (int j = max(0, ky - NEIGHBOURS_DISTANCE); j <= min(HEIGHT, ky + NEIGHBOURS_DISTANCE); j++)
+    for (int j = max(0, kx - NEIGHBOURS_DISTANCE); j <= min(LENGTH - 1, kx + NEIGHBOURS_DISTANCE); j++)
     {
-      if (i == kx && j == ky) continue;
-      res[grid[i * LENGTH + j]]; // possibly i + j * LENGTH
+      if (i == ky && j == kx) continue;
+      res[grid[i * LENGTH + j]]++;
     }
   }
 
@@ -117,23 +97,23 @@ void nextStep(int *grid) {
     res[i] = grid[i];
 
   for (int i = 0; i < CELLS_COUNT; i++) {
+    //printf("i: %d - ", i);
     int *surroundings = findSurroundings(grid, i);
+    //printArray(surroundings, CELL_TYPE_COUNT);
 
     // A house surrounded by houses becomes a store
-    if (grid[i] != 2 && surroundings[1] >= 5 && rand() % 100 < 5)
+    if (grid[i] != 2 && surroundings[1] >= 5 && rand() % 100 < 7)
       editCell(res, i, 2);
 
-    // If few houses and no stores nearby, 5% chance to disappear
-    else if (grid[i] != 0 && surroundings[1] <= 2 && rand() % 100 < 5)
+    // If few houses and no stores nearby, 1% chance to disappear
+    else if (grid[i] != 0 && surroundings[1] <= 2 && rand() % 100 < 1)
       editCell(res, i, 0);
 
     // Some people like to settle in rural areas
-    else if (grid[i] == 0 && surroundings[1] <= 2 &&
-             rand() % 100 < (15 * (surroundings[2])))
+    else if (grid[i] == 0 && surroundings[1] <= 2 && rand() % 100 < (15 * (surroundings[2])))
       editCell(res, i, 1);
 
-    else if (grid[i] == 2 && (surroundings[1] <= 3 || surroundings[2] >= 4) &&
-             rand() % 100 < 25)
+    else if (grid[i] == 2 && (surroundings[1] <= 3 || surroundings[2] >= 4) && rand() % 100 < 25)
       editCell(res, i, rand() % 100 < 25);
 
     /*
