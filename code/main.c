@@ -11,11 +11,14 @@
 #define PRINT_INTERVAL 250 // in ms
 
 // Do not edit:
-#define CELLS_COUNT (HEIGHT * LENGTH)
+#define CELL_COUNT (HEIGHT * LENGTH)
 
 /// Functions
 int min(int a, int b) { return a > b ? b : a; }
 int max(int a, int b) { return a > b ? a : b; }
+
+double min_d(double a, double b) { return a > b ? b : a; }
+double max_d(double a, double b) { return a > b ? a : b; }
 
 void clearStdout() {
 #ifdef _WIN32
@@ -67,7 +70,7 @@ void printGrid(int *grid){
 }
 
 void editCell(int *grid, int i, int value) {
-  if (i >= 0 && i < CELLS_COUNT)
+  if (i >= 0 && i < CELL_COUNT)
     grid[i] = value;
 }
 
@@ -91,14 +94,15 @@ int *findSurroundings(int *grid, int k) {
 }
 
 void nextStep(int *grid) {
-  int *res = malloc(sizeof(int) * CELLS_COUNT);
-  for (int i = 0; i < CELLS_COUNT; i++)
+  int *res = malloc(sizeof(int) * CELL_COUNT);
+  for (int i = 0; i < CELL_COUNT; i++)
     res[i] = grid[i];
 
-  for (int i = 0; i < CELLS_COUNT; i++) {
+  for (int i = 0; i < CELL_COUNT; i++) {
+    printf("%d/%d", i, CELL_COUNT);
     int *surroundings = findSurroundings(grid, i);
 
-    int probs[5] = {0; 0; 0; 0; 0};
+    double probs[5] = {0, 0, 0, 0, 0};
 
     // Void to
     if (grid[i] == 0) {
@@ -107,28 +111,38 @@ void nextStep(int *grid) {
     // House to
     else if (grid[i] == 1) {
 
-      // Void (rare, 1%)
-      grid[0] = 0.01 * (surroundings[2] <= 1 && surroundings[3] <= 1 && surroundings[4] == 0);
+      // Void (1% if no park, almost no shop, almost no work)
+      probs[0] = 0.01 * (surroundings[2] <= 1 && surroundings[3] <= 1 && surroundings[4] == 0);
 
       // House
       // /
 
-      // Shop
-      grid[2] = 
+      // Shop (5% if many houses, few shops)
+      probs[2] = min_d(0, 0.05 * ((surroundings[1] >= 3) * surroundings[1] * 0.34 - surroundings[2]));
 
-      // Void (must be rare -> 0.1 % ?)
-      if (surroundings[2] <= 1 && surroundings[] && surroundings[4])
-        editCell(res, i, 0);
-      // Shop (not that frequent, yet)
-      else if (surroundings[1] >= 5 && surroundings[2] < 2)
-        editCell(res, i, 2);
-      // Workplace (rare)
-      else if ()
-        editCell(res, i, 3);
-      // Park (frequent if too many houses)
-      else if ()
-        editCell(res, i, 4);
+      // Work
+      probs[3] = 0.1 * (surroundings[1] >= 3);
+
+      // Park
+      //probs[4] = ...
     }
+
+
+    // Rand choice
+    double prob_sum = 0;
+    for (int j = 0; j < 5; j++)
+      prob_sum += i - j ? probs[j] : 0;
+
+    probs[i] = 1 - prob_sum;
+
+    double sc[5] = {probs[0], 0, 0, 0, 0};
+    for (int j = 1; j < 5; j++)
+      sc[j] = sc[j - 1] + probs[j];
+    
+    printf(" - :)\n");
+
+    // TODO:
+    // Roulette pondérée
 
     /*
     // Houses pop up in the void
@@ -147,7 +161,7 @@ void nextStep(int *grid) {
     */
   }
 
-  for (int i = 0; i < CELLS_COUNT; i++)
+  for (int i = 0; i < CELL_COUNT; i++)
     grid[i] = res[i];
 
   free(res);
@@ -156,11 +170,11 @@ void nextStep(int *grid) {
 int main() {
   srand(time(NULL));
 
-  int *grid = malloc(sizeof(int) * CELLS_COUNT);
-  for (int i = 0; i < CELLS_COUNT; i++)
+  int *grid = malloc(sizeof(int) * CELL_COUNT);
+  for (int i = 0; i < CELL_COUNT; i++)
     grid[i] = 0;
 
-  grid[rand() % (CELLS_COUNT)] = 1;
+  grid[rand() % (CELL_COUNT)] = 1;
 
   for (;;) {
     fflush(stdout);
