@@ -166,7 +166,7 @@ void nextStep(int *grid) {
       probs[2] = 0.000020 * (surroundings[3][2] == 0) + 0.01 * (surroundings[0][3] <= 1 && surroundings[0][2] >= 1 && surroundings[5][2] <= 20);
 
       // Work
-      probs[3] = 0.000015 * (surroundings[3][2] == 0) + 0.01 * (surroundings[0][2] <= 1 && surroundings[0][3] >= 1 && surroundings[5][3] <= 20);;
+      probs[3] = 0.000015 * (surroundings[3][2] == 0) + 0.01 * (surroundings[0][2] <= 1 && surroundings[0][3] >= 1 && surroundings[5][3] <= 18);;
 
       // Park
       probs[4] = 0;
