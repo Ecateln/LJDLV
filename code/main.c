@@ -152,7 +152,7 @@ void nextStep(int *grid) {
       probs[3] = 0;
 
       // Park
-      probs[4] = 0.01 * (surroundings[3][1] >= 20 && surroundings[1][4] <= 4 && surroundings[4][4] <= 4);
+      probs[4] = 0.01 * (surroundings[3][1] >= 20 && surroundings[0][4] <= 5 && surroundings[3][4] <= 5) * (1 + 5 * surroundings[0][4]);
     }
     // House to
     else if (grid[i] == 1) {
@@ -163,10 +163,10 @@ void nextStep(int *grid) {
       // /
 
       // Shop
-      probs[2] = 0.000020 * (surroundings[3][2] == 0) + 0.01 * (surroundings[0][3] <= 1 && surroundings[0][2] >= 1 && surroundings[5][2] <= 20);
+      probs[2] = 0.000020 * (surroundings[3][2] == 0) + 0.01 * (surroundings[0][3] <= 1 && surroundings[0][2] >= 1 && surroundings[5][2] <= 18);
 
       // Work
-      probs[3] = 0.000015 * (surroundings[3][2] == 0) + 0.01 * (surroundings[0][2] <= 1 && surroundings[0][3] >= 1 && surroundings[5][3] <= 18);;
+      probs[3] = 0.000015 * (surroundings[3][2] == 0) + 0.01 * (surroundings[0][2] <= 1 && surroundings[0][3] >= 1 && surroundings[4][3] <= 5);;
 
       // Park
       probs[4] = 0;
@@ -191,7 +191,7 @@ void nextStep(int *grid) {
     // Workplace to
     else if (grid[i] == 3) {
       // Void
-      probs[0] = 0.001 * (surroundings[1][2] <= 2);
+      probs[0] = 0.001 * (surroundings[1][2] <= 3);
 
       // House
       probs[1] = 0;
