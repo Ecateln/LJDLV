@@ -431,7 +431,8 @@ int main() {
     int time_spent = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_nsec - start.tv_nsec) / 1000;
 
     // Print debug stats
-    printf("\e[0;39mGeneration #%ld - Elapsed time: %lds - FPS: %2.0f - Last Frame: %2.3fms\e[0m\n", ++n, time(NULL) - start_time, (double)n / (time(NULL) - start_time), (double)time_spent / 1000);
+    printf("\e[0;39mGeneration #%ld - Elapsed time: %lds - FPS: %2.0f - Rendered in: %2.3fms\e[0m\n",
+           ++n, time(NULL) - start_time, (double)n / (time(NULL) - start_time), (double)time_spent / 1000);
 
     wait(max(PRINT_INTERVAL - time_spent / 1000, 0));
   }
