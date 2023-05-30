@@ -97,7 +97,17 @@ int **findSurroundings(int *grid, int k) {
 
   int *total_neighbours = malloc(sizeof(int *) * NEIGHBOURS_DISTANCE);
   int **res = malloc(sizeof(int *) * NEIGHBOURS_DISTANCE);
+int **findSurroundings(int *grid, int k) {
+  const int kx = k % LENGTH, ky = k / LENGTH;
 
+  int *total_neighbours = malloc(sizeof(int *) * NEIGHBOURS_DISTANCE);
+  int **res = malloc(sizeof(int *) * NEIGHBOURS_DISTANCE);
+
+  for (int i = NEIGHBOURS_DISTANCE; i--;){
+    total_neighbours[i] = 0;
+    res[i] = malloc(sizeof(int) * CELL_TYPE_COUNT);
+    for (int j = CELL_TYPE_COUNT; j--; res[i][j] = 0);
+  }
   for (int i = NEIGHBOURS_DISTANCE; i--;){
     total_neighbours[i] = 0;
     res[i] = malloc(sizeof(int) * CELL_TYPE_COUNT);
@@ -117,7 +127,21 @@ int **findSurroundings(int *grid, int k) {
         total_neighbours[d]++;
       }
     }
+    {
+      if (y == ky && x == kx) continue;
+      int d = max(abs(x - kx), abs(y - ky));
+
+      for (int i = d; i <= NEIGHBOURS_DISTANCE; i++)
+      {
+        res[i - 1][grid[y * LENGTH + x]]++;
+        total_neighbours[d]++;
+      }
+    }
   }
+
+  for (int i = 0; i < NEIGHBOURS_DISTANCE; i++)
+    res[i][0] += NEIGHBOURS_COUNT - total_neighbours[i];
+
 
   for (int i = 0; i < NEIGHBOURS_DISTANCE; i++)
     res[i][0] += NEIGHBOURS_COUNT - total_neighbours[i];
@@ -131,6 +155,7 @@ void nextStep(int *grid) {
     res[i] = grid[i];
 
   for (int i = 0; i < CELL_COUNT; i++) {
+    int **surroundings = findSurroundings(grid, i);
     int **surroundings = findSurroundings(grid, i);
 
     double probs[CELL_TYPE_COUNT];
