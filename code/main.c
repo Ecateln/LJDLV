@@ -1,20 +1,10 @@
-/*
-  TODO:
-  - Calculer les règles en fonctions de certains paramètres souhaités (densité de population, distance à un magasin/parc....)
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
 /// Generator configuration
-/*
-#define HEIGHT 40
-#define LENGTH 40
-*/
-
-#define HEIGHT 42
-#define LENGTH 69
+#define HEIGHT 41
+#define LENGTH 96
 
 #define NEIGHBOURS_DISTANCE 6
 #define CELL_TYPE_COUNT 5
@@ -46,18 +36,6 @@ void wait(int ms) {
   ts.tv_sec = ms / 1000;
   ts.tv_nsec = (ms % 1000) * 1000000;
   nanosleep(&ts, NULL);
-}
-
-void printArray(int *arr, int n) {
-  for (int i = 0; i < n - 1; i++)
-    printf("%d, ", arr[i]);
-  printf("%d\n", arr[n - 1]);
-}
-
-void printArray_d(double *arr, int n) {
-  for (int i = 0; i < n - 1; i++)
-    printf("%lf, ", arr[i]);
-  printf("%lf\n", arr[n - 1]);
 }
 
 void printGrid(int *grid){
@@ -92,12 +70,7 @@ void printGrid(int *grid){
   printf("━┛\n");
 }
 
-void editCell(int *grid, int i, int value) {
-  if (i >= 0 && i < CELL_COUNT)
-    grid[i] = value;
-}
-
-int **findSurroundings(int *grid, int k) {
+int **findNeighbours(int *grid, int k) {
   const int kx = k % LENGTH, ky = k / LENGTH;
 
   int *total_neighbours = malloc(sizeof(int *) * NEIGHBOURS_DISTANCE);
@@ -130,13 +103,14 @@ int **findSurroundings(int *grid, int k) {
   return res;
 }
 
-void nextStep(int *grid) {
+// Computes the next generation of the automaton given its current state in {grid}
+void nextGeneration(int *grid) {
   int *res = malloc(sizeof(int) * CELL_COUNT);
   for (int i = 0; i < CELL_COUNT; i++)
     res[i] = grid[i];
 
   for (int i = 0; i < CELL_COUNT; i++) {
-    int **surroundings = findSurroundings(grid, i);
+    int **neighbours = findNeighbours(grid, i);
 
     double probs[CELL_TYPE_COUNT];
     for (int i = 0; i < CELL_TYPE_COUNT; i++) probs[i] = 0;
@@ -147,7 +121,7 @@ void nextStep(int *grid) {
       // /
 
       // House
-      probs[1] = 0.01 * (surroundings[0][1] >= 1) * (1 + surroundings[0][1] / 1.5) + 0.000015;
+      probs[1] = 0.01 * (neighbours[0][1] >= 1) * (1 + neighbours[0][1] / 1.5) + 0.000015;
 
       // Shop
       probs[2] = 0;
@@ -156,29 +130,29 @@ void nextStep(int *grid) {
       probs[3] = 0;
 
       // Park
-      probs[4] = 0.001 * (surroundings[4][1] >= 60 && surroundings[5][4] == 0);
+      probs[4] = 0.001 * (neighbours[4][1] >= 60 && neighbours[5][4] == 0);
     }
     // House to
     else if (grid[i] == 1) {
       // Void
-      probs[0] = 0; // 0.01 * (surroundings[1][1] >= 10);
+      probs[0] = 0; // 0.01 * (neighbours[1][1] >= 10);
 
       // House
       // /
 
       // Shop
-      probs[2] = 0.000020 * (surroundings[3][2] == 0) + 0.01 * (surroundings[0][3] <= 1 && surroundings[0][2] >= 1 && surroundings[5][2] <= 16);
+      probs[2] = 0.000020 * (neighbours[3][2] == 0) + 0.01 * (neighbours[0][3] <= 1 && neighbours[0][2] >= 1 && neighbours[5][2] <= 16);
 
       // Work
-      probs[3] = 0.000025 * (surroundings[3][2] == 0) + 0.01 * (surroundings[0][2] <= 1 && surroundings[0][3] >= 1 && surroundings[4][3] <= 7);;
+      probs[3] = 0.000025 * (neighbours[3][2] == 0) + 0.01 * (neighbours[0][2] <= 1 && neighbours[0][3] >= 1 && neighbours[4][3] <= 7);;
 
       // Park
-      probs[4] = 0.001 * (surroundings[3][1] >= 30 && surroundings[1][4] <= 5 && surroundings[5][4] <= 6) * (10 * surroundings[0][4]);
+      probs[4] = 0.001 * (neighbours[3][1] >= 30 && neighbours[1][4] <= 5 && neighbours[5][4] <= 6) * (10 * neighbours[0][4]);
     }
     // Shop to
     else if (grid[i] == 2) {
       // Void
-      probs[0] = 0.001 * (surroundings[1][1] <= 2);
+      probs[0] = 0.001 * (neighbours[1][1] <= 2);
 
       // House
       probs[1] = 0;
@@ -195,7 +169,7 @@ void nextStep(int *grid) {
     // Workplace to
     else if (grid[i] == 3) {
       // Void
-      probs[0] = 0.001 * (surroundings[1][2] <= 3);
+      probs[0] = 0.001 * (neighbours[1][2] <= 3);
 
       // House
       probs[1] = 0;
@@ -233,50 +207,50 @@ void nextStep(int *grid) {
       // /
 
       // House
-      probs[1] = 0.15 * (surroundings[1] >= 1) + 0.000015;
+      probs[1] = 0.15 * (neighbours[1] >= 1) + 0.000015;
 
       // Shop
-      probs[2] = 0.07 * (surroundings[1] >= 3) + 0.01 * (surroundings[1] >= 3) * surroundings[3] + 0.000001;
+      probs[2] = 0.07 * (neighbours[1] >= 3) + 0.01 * (neighbours[1] >= 3) * neighbours[3] + 0.000001;
 
       // Work
       probs[3] = 0.000001;
 
       // Park
-      probs[4] = 0.05 * (surroundings[1] >= 5 && surroundings[4] == 0);
+      probs[4] = 0.05 * (neighbours[1] >= 5 && neighbours[4] == 0);
     }
     // House to
     else if (grid[i] == 1) {
       // Void
-      probs[0] = max_d(0.01 * (surroundings[2] <= 1 && surroundings[3] <= 1 && surroundings[4] == 0) - 0.025 * surroundings[0], 0);
+      probs[0] = max_d(0.01 * (neighbours[2] <= 1 && neighbours[3] <= 1 && neighbours[4] == 0) - 0.025 * neighbours[0], 0);
 
       // House
       // /
 
       // Shop (5% if many houses, few shops)
-      probs[2] = min_d(0, 0.005 * ((surroundings[1] >= 3) + surroundings[1] * 0.2 - surroundings[2]));
+      probs[2] = min_d(0, 0.005 * ((neighbours[1] >= 3) + neighbours[1] * 0.2 - neighbours[2]));
 
       // Work
-      probs[3] = 0.005 * (surroundings[1] >= 5) + 0.005 * (surroundings[2] >= 3);
+      probs[3] = 0.005 * (neighbours[1] >= 5) + 0.005 * (neighbours[2] >= 3);
 
       // Park
-      probs[4] = 0.001 * (surroundings[1] >= 7 && surroundings[4] == 0);
+      probs[4] = 0.001 * (neighbours[1] >= 7 && neighbours[4] == 0);
     }
     // Shop to
     else if (grid[i] == 2) {
       // Void
-      probs[0] = 0.1 * (non_empty <= 3) + 0.01 * (surroundings[1] <= 2) + 0.05 * (max(2 - surroundings[1], 0));
+      probs[0] = 0.1 * (non_empty <= 3) + 0.01 * (neighbours[1] <= 2) + 0.05 * (max(2 - neighbours[1], 0));
 
       // House
-      probs[1] = 0.05 * (surroundings[2] >= 3) * (surroundings[2]);
+      probs[1] = 0.05 * (neighbours[2] >= 3) * (neighbours[2]);
 
       // Shop
       // /
 
       // Work
-      probs[3] = 0.05 * (surroundings[2] >= 4);
+      probs[3] = 0.05 * (neighbours[2] >= 4);
 
       // Park
-      probs[4] = 0.0001 * (surroundings[4] == 0 && surroundings[1] >= 6);
+      probs[4] = 0.0001 * (neighbours[4] == 0 && neighbours[1] >= 6);
     }
     // Workplace to
     else if (grid[i] == 3) {
@@ -284,10 +258,10 @@ void nextStep(int *grid) {
       probs[0] = 0.1 * (non_empty <= 3);
 
       // House
-      probs[1] = 0.05 * (surroundings[3] >= 3);
+      probs[1] = 0.05 * (neighbours[3] >= 3);
 
       // Shop
-      probs[2] = 0.05 * (surroundings[1] >= 3 && surroundings[3] >= 2);;
+      probs[2] = 0.05 * (neighbours[1] >= 3 && neighbours[3] >= 2);;
 
       // Work
       // /
@@ -298,16 +272,16 @@ void nextStep(int *grid) {
     // Park to
     else if (grid[i] == 4) {
       // Void
-      probs[0] = 0.1 * (non_empty <= 4) + (surroundings[4] >= 1) * 0.0001;
+      probs[0] = 0.1 * (non_empty <= 4) + (neighbours[4] >= 1) * 0.0001;
 
       // House
-      probs[1] = 0.01 * (surroundings[1] <= 3) + 0.0001;
+      probs[1] = 0.01 * (neighbours[1] <= 3) + 0.0001;
 
       // Shop
-      probs[2] = 0.01 * (surroundings[2] >= 2) + 0.0001;
+      probs[2] = 0.01 * (neighbours[2] >= 2) + 0.0001;
 
       // Work
-      probs[3] = 0.01 * (surroundings[3] >= 2) + 0.0001;
+      probs[3] = 0.01 * (neighbours[3] >= 2) + 0.0001;
 
       // Park
       // /
@@ -332,7 +306,7 @@ void nextStep(int *grid) {
       choice++;
 
     if (choice != grid[i])
-      editCell(res, i, choice);
+      res[i] = choice;
 
     // Free stuff
     for (int i = NEIGHBOURS_DISTANCE; i--; free(neighbours[i]));
@@ -340,42 +314,23 @@ void nextStep(int *grid) {
 
     /*
     // Houses pop up in the void
-    if (grid[i] == 0 && surroundings[0] >= 3 && rand() % 1000 <= surroundings[0]*surroundings[0])
+    if (grid[i] == 0 && neighbours[0] >= 3 && rand() % 1000 <= neighbours[0]*neighbours[0])
       editCell(res, i, 1);
 
     // House/void becomes marketplace if at least 4 houses + less than 1 market nearby
-    else if ((grid[i] == 0 || grid[i] == 1) && surroundings[1] >= 5 && surroundings[2] < 1 && rand() % 100 < 1)
+    else if ((grid[i] == 0 || grid[i] == 1) && neighbours[1] >= 5 && neighbours[2] < 1 && rand() % 100 < 1)
       editCell(res, i, 2);
-      */
-
-  
-    /*
-    // Conway (broken for now)
-    if (grid[i] == 0) {
-      if (surroundings[1] == 3) probs[1] = 1;
-    }
-    else if (grid[i] == 1) {
-      if (surroundings[1] < 2) probs[0] = 1;
-      else if (surroundings[1] == 2 || surroundings[1] == 3) probs[1] = 1;
-      else if (surroundings[1] > 3) probs[0] = 1;
-    }
-
-    if (i == 51 + LENGTH) {
-      printf("%d\n", grid[i]);
-      printArray(surroundings, 5);
-      printArray_d(probs, 5);
-    }
     */
 
     /*
     // Change all cells around a house to a house
-    if (surroundings[1] > 0)
+    if (neighbours[1] > 0)
       editCell(res, i, 1);
     */
   }
 
-  for (int i = 0; i < CELL_COUNT; i++)
-    grid[i] = res[i];
+  // Copy res to grid
+  for (int i = CELL_COUNT; i--; grid[i] = res[i]);
 
   free(res);
 }
@@ -408,13 +363,13 @@ int main() {
   wait(PRINT_INTERVAL);
 
   // Main loop
-  for (int64_t n = 1; ;) {
+  for (int64_t gens = 1; ;) {
     // Start timer
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC_RAW, &start);
 
     // Compute next grid
-    nextStep(grid);
+    nextGeneration(grid);
 
     // Clear previously displayed grid
     fflush(stdout);
@@ -430,7 +385,7 @@ int main() {
 
     // Print debug stats
     printf("\e[0;39mGeneration #%ld - Elapsed time: %lds - FPS: %2.0f - Rendered in: %2.3fms\e[0m\n",
-           ++n, time(NULL) - start_time, (double)n / (time(NULL) - start_time), (double)time_spent / 1000);
+           ++gens, time(NULL) - start_time, (double)gens / (time(NULL) - start_time), (double)time_spent / 1000);
 
     wait(max(PRINT_INTERVAL - time_spent / 1000, 0));
   }
