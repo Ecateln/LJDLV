@@ -100,6 +100,7 @@ int **findNeighbours(int *grid, int k) {
   for (int i = 0; i < NEIGHBOURS_DISTANCE; i++)
     res[i][0] += NEIGHBOURS_COUNT - total_neighbours[i];
 
+  free(total_neighbours);
   return res;
 }
 
