@@ -18,7 +18,7 @@
 
 #define NEIGHBOURS_DISTANCE 6
 #define CELL_TYPE_COUNT 5
-#define PRINT_INTERVAL 200 // in ms
+#define PRINT_INTERVAL 100 // in ms
 
 // Do not edit:
 const int CELL_COUNT = HEIGHT * LENGTH;
@@ -156,7 +156,7 @@ void nextStep(int *grid) {
       probs[3] = 0;
 
       // Park
-      probs[4] = 0.001 * (surroundings[3][1] >= 20 && surroundings[1][4] <= 10 && surroundings[3][4] <= 5) * (1 + 2 * surroundings[0][4]);
+      probs[4] = 0.001 * (surroundings[4][1] >= 60 && surroundings[5][4] == 0);
     }
     // House to
     else if (grid[i] == 1) {
@@ -173,7 +173,7 @@ void nextStep(int *grid) {
       probs[3] = 0.000025 * (surroundings[3][2] == 0) + 0.01 * (surroundings[0][2] <= 1 && surroundings[0][3] >= 1 && surroundings[4][3] <= 7);;
 
       // Park
-      probs[4] = 0;
+      probs[4] = 0.001 * (surroundings[3][1] >= 30 && surroundings[1][4] <= 5 && surroundings[5][4] <= 6) * (10 * surroundings[0][4]);
     }
     // Shop to
     else if (grid[i] == 2) {
