@@ -334,15 +334,9 @@ void nextStep(int *grid) {
     if (choice != grid[i])
       editCell(res, i, choice);
 
-    /*
-    if (grid[i] == 1) {
-      printf("%d\n", choice);
-      printf("%d/%d\n", i, CELL_COUNT);
-
-      printArray_d(probs, CELL_TYPE_COUNT);
-      printArray_d(sc, CELL_TYPE_COUNT);
-    }
-    */
+    // Free stuff
+    for (int i = NEIGHBOURS_DISTANCE; i--; free(neighbours[i]));
+    free(neighbours);
 
     /*
     // Houses pop up in the void
