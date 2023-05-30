@@ -47,7 +47,7 @@ void printGrid(int *grid){
     "\e[0;37m", // white
   };
 
-  printf("┏━");
+  printf("\n┏━");
   for (int i = 0; i < LENGTH; i++)
     printf("━━");
   printf("━┓\n");
