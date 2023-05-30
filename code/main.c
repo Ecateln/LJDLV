@@ -62,11 +62,11 @@ void printArray_d(double *arr, int n) {
 
 void printGrid(int *grid){
   char *colors[CELL_TYPE_COUNT] = {
-    "  ",
-    "\e[0;32m██\e[0m",
-    "\e[0;34m██\e[0m",
-    "\e[0;33m██\e[0m",
-    "\e[0;37m██\e[0m",
+    "",         // none
+    "\e[0;32m", // green
+    "\e[0;34m", // blue
+    "\e[0;33m", // orange
+    "\e[0;37m", // white
   };
 
   printf("┏━");
@@ -76,9 +76,14 @@ void printGrid(int *grid){
 
   for (int i = 0; i < HEIGHT; i++) {
     printf("┃ ");
-    for (int j = 0; j < LENGTH; j++)
-      printf("%s", colors[grid[i * LENGTH + j]]);
-    printf(" ┃\n");
+    for (int j = 0; j < LENGTH; j++) {
+      printf(
+        "%s%s",
+        j == 0 || grid[i * LENGTH + j] != grid[i * LENGTH + j - 1] ? colors[grid[i * LENGTH + j]] : "",
+        grid[i * LENGTH + j] ? "██" : "  "
+      );
+    }
+    printf("\e[0m ┃\n");
   }
 
   printf("┗━");
