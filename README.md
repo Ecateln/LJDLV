@@ -1,3 +1,3 @@
-### --> MCOT: [ici](./mcot.md)
+### --> [MCOT](./mcot.md) :)
 
 ![](/assets/img/ht.gif)
