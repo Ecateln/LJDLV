@@ -310,7 +310,7 @@ void nextGeneration(int *grid) {
       res[i] = choice;
 
     // Free stuff
-    for (int i = NEIGHBOURS_DISTANCE; i--; free(neighbours[i]));
+    for (int j = NEIGHBOURS_DISTANCE; j--; free(neighbours[j]));
     free(neighbours);
 
     /*
