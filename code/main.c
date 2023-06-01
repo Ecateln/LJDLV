@@ -114,7 +114,7 @@ void nextGeneration(int *grid) {
     int **neighbours = findNeighbours(grid, i);
 
     double probs[CELL_TYPE_COUNT];
-    for (int i = 0; i < CELL_TYPE_COUNT; i++) probs[i] = 0;
+    for (int j = 0; j < CELL_TYPE_COUNT; j++) probs[j] = 0;
 
     // Void to
     if (grid[i] == 0) {
