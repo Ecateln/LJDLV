@@ -122,13 +122,13 @@ void nextGeneration(int *grid) {
       // /
 
       // House
-      probs[1] = 0.01 * (neighbours[0][1] >= 1) * (1 + neighbours[0][1] / 1.5) + 0.000015;
+      probs[1] = 0.000015 + 0.01 * (neighbours[0][1] >= 1) * (1 + neighbours[0][1] / 1.5) * max(1, 3 * neighbours[0][2]) * max(1, 6 * neighbours[0][4]);
 
       // Shop
-      probs[2] = 0;
+      probs[2] = 0.000020 * (neighbours[3][2] == 0) * neighbours[0][1] + 0.01 * (neighbours[0][3] <= 1 && neighbours[0][2] >= 1 && neighbours[5][2] <= 16);
 
       // Work
-      probs[3] = 0;
+      probs[3] = 0.000025 * (neighbours[3][3] == 0 && neighbours[2][2] <= 3) * neighbours[0][1] + 0.01 * (neighbours[0][2] <= 1 && neighbours[0][3] >= 1 && neighbours[4][3] <= 7);
 
       // Park
       probs[4] = 0.001 * (neighbours[4][1] >= 60 && neighbours[5][4] == 0);
@@ -142,21 +142,21 @@ void nextGeneration(int *grid) {
       // /
 
       // Shop
-      probs[2] = 0.000020 * (neighbours[3][2] == 0) + 0.01 * (neighbours[0][3] <= 1 && neighbours[0][2] >= 1 && neighbours[5][2] <= 16);
+      probs[2] = 0.000020 * (neighbours[3][2] == 0) * neighbours[0][1] + 0.01 * (neighbours[0][3] <= 1 && neighbours[0][2] >= 1 && neighbours[5][2] <= 16);
 
       // Work
-      probs[3] = 0.000025 * (neighbours[3][2] == 0) + 0.01 * (neighbours[0][2] <= 1 && neighbours[0][3] >= 1 && neighbours[4][3] <= 7);;
+      probs[3] = 0.000025 * (neighbours[3][3] == 0 && neighbours[2][2] <= 3) * neighbours[0][1] + 0.01 * (neighbours[0][2] <= 1 && neighbours[0][3] >= 1 && neighbours[4][3] <= 7);
 
       // Park
-      probs[4] = 0.001 * (neighbours[3][1] >= 30 && neighbours[1][4] <= 5 && neighbours[5][4] <= 6) * (10 * neighbours[0][4]);
+      probs[4] = 0.001 * (neighbours[3][1] >= 30 && neighbours[1][4] <= 5 && neighbours[5][4] <= 5) * (10 * neighbours[0][4]) * max(neighbours[0][1], 1);
     }
     // Shop to
     else if (grid[i] == 2) {
       // Void
-      probs[0] = 0.001 * (neighbours[1][1] <= 2);
+      probs[0] = 0;
 
       // House
-      probs[1] = 0;
+      probs[1] = 0.01 * (neighbours[0][2] < 2);
 
       // Shop
       // /
@@ -170,10 +170,10 @@ void nextGeneration(int *grid) {
     // Workplace to
     else if (grid[i] == 3) {
       // Void
-      probs[0] = 0.001 * (neighbours[1][2] <= 3);
+      probs[0] = 0;
 
       // House
-      probs[1] = 0;
+      probs[1] = 0.01 * (neighbours[1][3] < 2);
 
       // Shop
       probs[2] = 0;
@@ -190,7 +190,7 @@ void nextGeneration(int *grid) {
       probs[0] = 0;
 
       // House
-      probs[1] = 0;
+      probs[1] = 0.01 * (neighbours[0][1] < 2 || neighbours[1][1] < 8);
 
       // Shop
       probs[2] = 0;
@@ -316,17 +316,17 @@ void nextGeneration(int *grid) {
     /*
     // Houses pop up in the void
     if (grid[i] == 0 && neighbours[0] >= 3 && rand() % 1000 <= neighbours[0]*neighbours[0])
-      editCell(res, i, 1);
+      res[i] = 1;
 
     // House/void becomes marketplace if at least 4 houses + less than 1 market nearby
     else if ((grid[i] == 0 || grid[i] == 1) && neighbours[1] >= 5 && neighbours[2] < 1 && rand() % 100 < 1)
-      editCell(res, i, 2);
+      res[i] = 2;
     */
 
     /*
     // Change all cells around a house to a house
     if (neighbours[1] > 0)
-      editCell(res, i, 1);
+      res[i] = 1;
     */
   }
 
