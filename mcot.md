@@ -69,8 +69,10 @@ Huw Oliver: [The 53 best cities in the world in 2022](https://www.timeout.com/th
 Numberphile: [Inventing Game of Life](https://www.youtube.com/watch?v=R9Plq-D1gEk)
 
 ## DOT
-
-~~TODO: Rencontrer Conway ?~~
-* j'ai codé un truc à un moment, faudrait ptet le dire
-* La conférence avec le matheux qui avait des fonds d'écran rigolos
-(- pourquoi pas passer 5h en OCaml pour faire un quadrillage avec des pixels qui bougent ?)
+* 22  Octobre  2022: Choix du sujet et debut des recherches  
+* 17  Novembre 2022: Première version fonctionnelle avec des règles basiques  
+* 15  Décembre 2022: Tentative d'implémentation de l'algorithme 'Hashlife'  
+* 1er Février  2023: Fin de la rédaction du MCOT  
+* 30  Mars     2023: Deuxième version et règles plus avancées  
+* 23  Mai      2023: Troisième et dernière version, optimisée et plus satisfaisante  
+* X   Juin     2023: Mise en ligne du DOT et de la présentation
