@@ -3,8 +3,11 @@
 #include <time.h>
 
 /// Generator configuration
-#define HEIGHT 41
-#define LENGTH 96
+/* #define HEIGHT 41
+#define LENGTH 96 */
+
+#define HEIGHT 40
+#define LENGTH 40
 
 #define NEIGHBOURS_DISTANCE 6
 #define CELL_TYPE_COUNT 5
@@ -202,92 +205,6 @@ void nextGeneration(int *grid) {
       // /
     }
 
-    /* // Void to
-    if (grid[i] == 0) {
-      // Void
-      // /
-
-      // House
-      probs[1] = 0.15 * (neighbours[1] >= 1) + 0.000015;
-
-      // Shop
-      probs[2] = 0.07 * (neighbours[1] >= 3) + 0.01 * (neighbours[1] >= 3) * neighbours[3] + 0.000001;
-
-      // Work
-      probs[3] = 0.000001;
-
-      // Park
-      probs[4] = 0.05 * (neighbours[1] >= 5 && neighbours[4] == 0);
-    }
-    // House to
-    else if (grid[i] == 1) {
-      // Void
-      probs[0] = max_d(0.01 * (neighbours[2] <= 1 && neighbours[3] <= 1 && neighbours[4] == 0) - 0.025 * neighbours[0], 0);
-
-      // House
-      // /
-
-      // Shop (5% if many houses, few shops)
-      probs[2] = min_d(0, 0.005 * ((neighbours[1] >= 3) + neighbours[1] * 0.2 - neighbours[2]));
-
-      // Work
-      probs[3] = 0.005 * (neighbours[1] >= 5) + 0.005 * (neighbours[2] >= 3);
-
-      // Park
-      probs[4] = 0.001 * (neighbours[1] >= 7 && neighbours[4] == 0);
-    }
-    // Shop to
-    else if (grid[i] == 2) {
-      // Void
-      probs[0] = 0.1 * (non_empty <= 3) + 0.01 * (neighbours[1] <= 2) + 0.05 * (max(2 - neighbours[1], 0));
-
-      // House
-      probs[1] = 0.05 * (neighbours[2] >= 3) * (neighbours[2]);
-
-      // Shop
-      // /
-
-      // Work
-      probs[3] = 0.05 * (neighbours[2] >= 4);
-
-      // Park
-      probs[4] = 0.0001 * (neighbours[4] == 0 && neighbours[1] >= 6);
-    }
-    // Workplace to
-    else if (grid[i] == 3) {
-      // Void
-      probs[0] = 0.1 * (non_empty <= 3);
-
-      // House
-      probs[1] = 0.05 * (neighbours[3] >= 3);
-
-      // Shop
-      probs[2] = 0.05 * (neighbours[1] >= 3 && neighbours[3] >= 2);;
-
-      // Work
-      // /
-
-      // Park
-      probs[4] = 0;
-    }
-    // Park to
-    else if (grid[i] == 4) {
-      // Void
-      probs[0] = 0.1 * (non_empty <= 4) + (neighbours[4] >= 1) * 0.0001;
-
-      // House
-      probs[1] = 0.01 * (neighbours[1] <= 3) + 0.0001;
-
-      // Shop
-      probs[2] = 0.01 * (neighbours[2] >= 2) + 0.0001;
-
-      // Work
-      probs[3] = 0.01 * (neighbours[3] >= 2) + 0.0001;
-
-      // Park
-      // /
-    } */
-
     /// Rand choice
     // Initialisation des tableaux
     double prob_sum = 0;
@@ -312,22 +229,6 @@ void nextGeneration(int *grid) {
     // Free stuff
     for (int j = NEIGHBOURS_DISTANCE; j--; free(neighbours[j]));
     free(neighbours);
-
-    /*
-    // Houses pop up in the void
-    if (grid[i] == 0 && neighbours[0] >= 3 && rand() % 1000 <= neighbours[0]*neighbours[0])
-      res[i] = 1;
-
-    // House/void becomes marketplace if at least 4 houses + less than 1 market nearby
-    else if ((grid[i] == 0 || grid[i] == 1) && neighbours[1] >= 5 && neighbours[2] < 1 && rand() % 100 < 1)
-      res[i] = 2;
-    */
-
-    /*
-    // Change all cells around a house to a house
-    if (neighbours[1] > 0)
-      res[i] = 1;
-    */
   }
 
   // Copy res to grid
