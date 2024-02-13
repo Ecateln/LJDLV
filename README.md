@@ -52,10 +52,6 @@ Peut-on espérer pouvoir un jour compter sur des algorithmes tels que des automa
 3. Appliquer le principe d'automate cellulaire à une modélisation de zone urbaine
 4. Définir des règles de génération à partir de l'étude précédente et analyser les comportements de celles-ci
 
-## Abstract
-
-(résumé de la bio en anglais)
-
 ## Références bibliographiques (phase 2)
 
 John Von Neumann: [Theory of self-reproducing automata](https://archive.org/details/theoryofselfrepr00vonn_0/page/n13/mode/2up)
