@@ -1,3 +1,14 @@
+# Bienvenue
+
+Ceci est un projet réalisé dans le cadre des Travaux d'Initative Personnelle Encadrée (TIPE) à présenter dans le cadre de mes concours de CPGE pour l'année 2022-2023.  
+Vous trouverez ci-dessous des captures d'écran d'un exemple d'execution du programme, ainsi que le rapport (MCOT) à transmettre au jury avant la présentation.
+
+<div style="float:left">
+<img src="/assets/img/screen1.png" height="325" width="325"/>
+<img src="/assets/img/screen2.png" height="325" width="325"/>
+<img src="/assets/img/screen3.png" height="325" width="325"/>
+</div>
+
 # Le Jeu de la Ville: Étude de modèles de villes générées via un automate cellulaire
 
 ## Présentation rapide
