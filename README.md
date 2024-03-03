@@ -1,7 +1,7 @@
 # Bienvenue !
 
 Ceci est un projet réalisé dans le cadre des Travaux d'Initative Personnelle Encadrée (TIPE) à présenter dans le cadre des concours de CPGE pour l'année 2022-2023.
-Le but de ce projet était de mettre en oeuvre un automate cellulaire capable d'aider à la modélisation d'organisations urbaines de tailles variées, avec des règles faciles à customiser.
+Le but de ce projet était de mettre en oeuvre un automate cellulaire capable d'aider à la modélisation d'organisations urbaines de tailles variées, avec des règles faciles à customiser.  
 Vous trouverez ci-dessous des captures d'écran d'un exemple d'execution du programme, ainsi que le rapport (MCOT) à transmettre au jury avant la présentation.
 
 <div style="float:left">
